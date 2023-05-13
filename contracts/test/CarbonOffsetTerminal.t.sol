@@ -5,6 +5,7 @@ import "../src/polygon/CarbonOffsetSettler.sol";
 import "../lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/IERC20Upgradeable.sol";
 import "../src/polygon/xUSDC.sol";
 import "forge-std/Test.sol";
+import "forge-std/StdCheats.sol";
 import "../lib/OffsetHelper/contracts/interfaces/IToucanPoolToken.sol";
 
 contract CarbonOffsetTest is Test {
@@ -17,7 +18,7 @@ contract CarbonOffsetTest is Test {
     address owner = 0x64beA9B3960A928758A8708078CB57405C75343f;
 
     function setUp() public {
-        changePrank(owner);
+        vm.startPrank(owner);
         payment = new xUSDC();
         payment.initialize(
             0x8249cD1275855F2BB20eE71f0B9fA3c9155E5FaB, // outbox
@@ -44,10 +45,10 @@ contract CarbonOffsetTest is Test {
         address tCO2Target = 0x463de2a5c6E8Bb0c87F4Aa80a02689e6680F72C7;
         uint256 amount = 1e6 * 100;
 
-        console.log(
-            "tco2 pre ",
-            IToucanPoolToken(settler.NCT()).tokenBalances(tCO2Target)
-        );
+       // console.log(
+       //     "tco2 pre ",
+       //     IToucanPoolToken(settler.NCT()).tokenBalances(tCO2Target)
+        //);
 
         changePrank(owner);
         deal(settler.USDC(), owner, amount);
@@ -61,10 +62,10 @@ contract CarbonOffsetTest is Test {
             "I love the Earth"
         );
 
-        console.log(
-            "tco2 post",
-            IToucanPoolToken(settler.NCT()).tokenBalances(tCO2Target)
-        );
+        //console.log(
+        //    "tco2 post",
+        //    IToucanPoolToken(settler.NCT()).tokenBalances(tCO2Target)
+        //);
     }
 
     function test_deployed() public {
