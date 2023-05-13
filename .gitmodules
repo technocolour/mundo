@@ -13,3 +13,6 @@
 [submodule "contracts/lib/contracts"]
 	path = contracts/lib/contracts
 	url = https://github.com/ToucanProtocol/contracts
+[submodule "contracts/lib/OffsetHelper"]
+	path = contracts/lib/OffsetHelper
+	url = https://github.com/technocolour/OffsetHelper
